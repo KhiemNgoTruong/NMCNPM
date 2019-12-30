@@ -5,30 +5,37 @@
                     <div class="text text-center">
                         <h2>TẠO TÀI KHOẢN</h2>
                         <p>Vui lòng nhập đầy đủ các thông tin sau!</p>
-                        <form action="#" class="account_form">
+                        <form  class="account_form" method="POST">
                             <div class="field-form">
-                                <input type="text" class="field-text" placeholder="First name*">
+                                <input type="text" class="field-text" placeholder="First name*" name="firstName">
                             </div>
                             <div class="field-form">
-                                <input type="text" class="field-text" placeholder="Last name*">
+                                <input type="text" class="field-text" placeholder="Last name*" name="lastName">
                             </div>
                             <div class="field-form">
-                                <input type="text" class="field-text" placeholder="Di động*">
+                                <input type="text" class="field-text" placeholder="Di động*" name="phoneNumber">
                             </div>
                             <div class="field-form">
-                                <input type="text" class="field-text" placeholder="Email*">
+                                <input type="text" class="field-text" placeholder="Email*" name="email">
                             </div>
                             <div class="field-form">
-                                <input type="password" class="field-text" placeholder="Password*">
+                                <input type="password" class="field-text" placeholder="Password*" name="password">
                                 <span class="view-pass"><i class="lotus-icon-view"></i></span>
                             </div>
                             <div class="field-form">
+                                <input type="password" class="field-text" placeholder="Nhập lại Password*" name="password2">
+                                <span class="view-pass"><i class="lotus-icon-view"></i></span>
+                            </div>
+                            <div class="field-form">
+                                <input type="text" class="field-text" placeholder="Địa chỉ" name="address">
+                            </div>
+                            <div class="field-form">
                                <label class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" name="checkbox"><span class="custom-control-label">Bạn đồng ý với các <a href="#">điều khoản và điều kiện?</a></span>
+                                    <input class="custom-control-input" type="checkbox" ><span class="custom-control-label">Bạn đồng ý với các <a href="#">điều khoản và điều kiện?</a></span>
                                 </label>
                             </div>
                             <div class="field-form field-submit">
-                                <button class="awe-btn awe-btn-13">ĐĂNG KÝ</button>
+                                <button class="awe-btn awe-btn-13" type="submit">ĐĂNG KÝ</button>
                             </div>
                             <div class="field-form text-center">
                               <span class="splash-description">

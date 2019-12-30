@@ -11,9 +11,21 @@ var expressSession=require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var handlebars=require('handlebars');
-
+require('./configs/passport');
 var app = express();
-mongoose.connect('mongodb://localhost/booking');
+//mongoose.connect('mongodb://localhost/booking');
+
+app.post('/sign-in', passport.authenticate('local', {
+  failureRedirect: '/sign-in',
+}), async function (req, res) {
+  res.redirect('/');
+});
+
+app.get('/logout', function(req, res){
+  req.logout();
+  req.session.destroy();
+  res.redirect('/');
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

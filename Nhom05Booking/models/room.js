@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var roomModels = mongoose.Schema;
-mongoose.connect('mongodb://localhost/booking');
+//mongoose.connect('mongodb://localhost/booking');
 
 var roomModels = new roomModels({
     linkRoom: {type: String, require: true},
