@@ -10,13 +10,17 @@ router.get('/sign-up', userController.signup);
 
 router.get('/sign-in', userController.signin);
 
+router.post('/sign-in', userController.signinpost);
+
 router.post('/sign-up', userController.signuppost)
+
 router.get('/profile', userController.profile);
 
-var getuser = require('../configs/getuser');
+
+
 
 router.get('/testcallapi', async (req, res, next)=>{
- var user = await getuser.getuser();
+ //var user = await getuser.getuser();
   request.post('http://nhom05booking.herokuapp.com/signin', {form: {'email': 'dddddd@gmail.com', 'password': 'dddddd'}}, function (error, response, body) {
   console.log('error:', error); // Print the error if one occurred
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -25,6 +29,17 @@ router.get('/testcallapi', async (req, res, next)=>{
   res.send( ); // Print the HTML for the Google homepage.
 });
 })
+router.get('/testcallapiget', async (req, res, next)=>{
+  //var user = await getuser.getuser();
+   request.get('http://nhom05booking.herokuapp.com/room/list', function (error, response, body) {
+   console.log('error:', error); // Print the error if one occurred
+   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+   var x = JSON.parse(body);
+   var {user} = JSON.parse(body);
+   res.send( ); // Print the HTML for the Google homepage.
+ });
+ })
+
 module.exports = router;
 
 

@@ -1,11 +1,21 @@
 var roomController = require('../models/room');
-
+var request = require('request');
 
 module.exports.home =function(req, res, next) {
     res.render('homes/home', { title: 'N5-BOOKING' })
 };
 
 module.exports.room=function(req, res, next) {
+
+    request.get('http://nhom05booking.herokuapp.com/room/list', function (error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    var x = JSON.parse(body);
+    var {listRooms} = JSON.parse(body);
+    req.session.listRooms = listRooms;
+    console.log(res.locals.listRooms)
+});
+
     res.render('rooms/room', { title: 'PHÒNG' })
 };
 

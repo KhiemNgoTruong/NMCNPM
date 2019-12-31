@@ -9,11 +9,14 @@
                     <span> 0335-435-604</span>
                 </div>
                 <div class="header_right float-right">
-                    <span class="login-register">
-                            <a href="/sign-in">ĐĂNG NHẬP</a>
-                            <a href="/sign-up">ĐĂNG KÝ</a>
-                            <a href="/profile">TÀI KHOẢN</a>
-                            <a href="/logout">ĐĂNG XUẤT</a>
+                    <span class="login-register">  
+                        {{#if user}}
+                    <a href="/profile">TÀI KHOẢN</a>
+                        <a href="/logout">ĐĂNG XUẤT</a>
+                        {{else}}
+                        <a href="/sign-in">ĐĂNG NHẬP</a>
+                        <a href="/sign-up">ĐĂNG KÝ</a>
+                    {{/if}}   
                      </span>
                 </div>
                 <!-- HEADER LOGO -->

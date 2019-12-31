@@ -11,21 +11,13 @@ var expressSession=require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var handlebars=require('handlebars');
-require('./configs/passport');
 var app = express();
+var request = require('request');
 //mongoose.connect('mongodb://localhost/booking');
 
-app.post('/sign-in', passport.authenticate('local', {
-  failureRedirect: '/sign-in',
-}), async function (req, res) {
-  res.redirect('/');
-});
 
-app.get('/logout', function(req, res){
-  req.logout();
-  req.session.destroy();
-  res.redirect('/');
-  });
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,6 +41,24 @@ app.use(connectFlash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req, res, next)
+{
+  //login or logout
+  //res.locals.isAuthenticated= req.isAuthenticated();
+  res.locals.user = req.session.user;
+  //session cart
+ // res.locals.session = req.session;
+  res.locals.listRooms = req.session.listRooms;
+  next();
+});
+
+app.get('/logout', function(req, res){
+  res.locals.user = null;
+  req.session.user =null;
+  req.logout();
+  req.session.destroy();
+  res.redirect('/');
+  });
 
 app.use('/', indexRouter);
 app.use('/', usersRouter);
