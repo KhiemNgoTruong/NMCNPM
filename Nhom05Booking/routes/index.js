@@ -14,6 +14,12 @@ router.get('/room-page', indexController.roomPage);
 
 router.get('/check-out', indexController.checkOut);
 
+router.post('/check-out', indexController.createReservation);
 
+router.get('/book-room', indexController.bookroom);
+
+router.post('/room', indexController.searchroompost);
+
+router.get('/getroominfo',indexController.getRoomInfo);
 
 module.exports = router;

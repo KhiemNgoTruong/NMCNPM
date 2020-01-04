@@ -67,13 +67,10 @@
             <div class="check-availability">
                 <div class="ot-heading">
                     <h2 class="mb40">TÌM KIẾM PHÒNG</h2>
-                    {{#if listRooms}}
-                    <h1>hung</h1>
-                    {{/if}}
                 </div>
-                <form id="ajax-form-search-room" class="mt40 mb50" action="search_step_2.php" method="post">
-                    <div class="availability-form mb40">
-						<select class="awe-select" name="typeRoom">
+                <form  class="mt40 mb50" method="post">
+                    
+						{{!-- <select class="awe-select" name="typeRoom">
                             <option>Loại</option>
                             <option>VIP</option>
                             <option>SANG</option>
@@ -91,12 +88,14 @@
                             <option>2.000.000-3.000.000</option>
                             <option>1.000.000-2.000.000</option>
                             <option>Dưới 1.000.000</option>
-                        </select>
-                        <input type="text" name="arrive" class="awe-calendar from" placeholder="Ngày nhận">
-                        <input type="text" name="departure" class="awe-calendar to" placeholder="Ngày trả">
-                    </div>
-                    <div class="vailability-submit">
-                        <button class="awe-btn awe-btn-13 pr30 pl30 f16 bold font-hind">TÌM KIẾM</button>
+                        </select> --}}
+                        <input type="number" name="adults" class=" from" placeholder="Số người lớn">
+                        <input type="number" name="childs" class=" from" placeholder="Số trẻ em">
+                        <span>Ngày nhận: </span><input type="date" class=" from"  name="arrivalDate">
+                        <span>Ngày Trả: </span><input  type="date"  class=" to" name="departureDate">
+                        
+                    <div class="form-group"> 
+                        <button class="awe-btn awe-btn-13 pr30 pl30 f16 bold font-hind" type="submit">TÌM KIẾM</button>
                     </div>
                 </form>
             </div>
@@ -110,98 +109,33 @@
                 <div class="room-wrap-1">
                     <div class="row">
                         <!-- ITEM -->
+                        {{#each listRooms}}
                         <div class="col-md-6">
                             <div class="room_item-1">
-                                <h2><a href="#">FAMILY ROOM</a></h2>
-                                <div class="img">
-                                    <a href="#"><img src="images/room/grid/img-1.jpg" alt=""></a>
+                                <h2><a href="#">{{roomClass}} ROOM</a></h2>
+                                {{#each image}}
+                                <div class="img">              
+                                    <a href="#"><img src="{{this}}" alt=""></a>
                                 </div>
+                                {{/each}}
                                 <div class="desc">
-                                    <p>Located in the heart of Aspen with a unique blend of contemporary luxury and historic heritage, deluxe accommodations, superb amenities, genuine hospitality and dedicated service for an elevated experience in the Rocky Mountains.</p>
+                                    <p>{{description}}</p>
                                     <ul>
-                                        <li>Max: 4 Person(s)</li>
-                                        <li>Size: 35 m2 / 376 ft2</li>
-                                        <li>View: Ocen</li>
-                                        <li>Bed: King-size or twin beds</li>
+                                        <li>Max: {{max}} Person(s)</li>
+                                        <li>Size: {{size}}</li>
+                                        <li>View: chua co</li>
+                                        <li>Gường: {{bed}}</li>
                                     </ul>
                                 </div>
                                 <div class="bot">
-                                    <span class="price">Starting <span class="amout">$260</span> /days</span>
-                                    <a href="#" class="awe-btn awe-btn-13">VIEW DETAILS</a>
+                                    <span class="price">Starting <span class="amout">{{price}}</span> /days</span>
+                                    <a href="/getroominfo?roomId={{_id}}" class="awe-btn awe-btn-13">VIEW DETAILS</a>
                                 </div>
                             </div>
                         </div>
+                        {{/each}}
                         <!-- END / ITEM -->
                         <!-- ITEM -->
-                        <div class="col-md-6">
-                            <div class="room_item-1">
-                                <h2><a href="#">LUXURY ROOM</a></h2>
-                                <div class="img">
-                                    <a href="#"><img src="images/room/grid/img-1.jpg" alt=""></a>
-                                </div>
-                                <div class="desc">
-                                    <p>Located in the heart of Aspen with a unique blend of contemporary luxury and historic heritage, deluxe accommodations, superb amenities, genuine hospitality and dedicated service for an elevated experience in the Rocky Mountains.</p>
-                                    <ul>
-                                        <li>Max: 4 Person(s)</li>
-                                        <li>Size: 35 m2 / 376 ft2</li>
-                                        <li>View: Ocen</li>
-                                        <li>Bed: King-size or twin beds</li>
-                                    </ul>
-                                </div>
-                                <div class="bot">
-                                    <span class="price">Starting <span class="amout">$260</span> /days</span>
-                                    <a href="#" class="awe-btn awe-btn-13">VIEW DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / ITEM -->
-
-                        <!-- ITEM -->
-                        <div class="col-md-6">
-                            <div class="room_item-1">
-                                <h2><a href="#">COUPLE ROOM</a></h2>
-                                <div class="img">
-                                    <a href="#"><img src="images/room/grid/img-1.jpg" alt=""></a>
-                                </div>
-                                <div class="desc">
-                                    <p>Located in the heart of Aspen with a unique blend of contemporary luxury and historic heritage, deluxe accommodations, superb amenities, genuine hospitality and dedicated service for an elevated experience in the Rocky Mountains.</p>
-                                    <ul>
-                                        <li>Max: 4 Person(s)</li>
-                                        <li>Size: 35 m2 / 376 ft2</li>
-                                        <li>View: Ocen</li>
-                                        <li>Bed: King-size or twin beds</li>
-                                    </ul>
-                                </div>
-                                <div class="bot">
-                                    <span class="price">Starting <span class="amout">$260</span> /days</span>
-                                    <a href="#" class="awe-btn awe-btn-13">VIEW DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / ITEM -->
-                        <!-- ITEM -->
-                        <div class="col-md-6">
-                            <div class="room_item-1">
-                                <h2><a href="#">STANDARD ROOM</a></h2>
-                                <div class="img">
-                                    <a href="#"><img src="images/room/grid/img-1.jpg" alt=""></a>
-                                </div>
-                                <div class="desc">
-                                    <p>Located in the heart of Aspen with a unique blend of contemporary luxury and historic heritage, deluxe accommodations, superb amenities, genuine hospitality and dedicated service for an elevated experience in the Rocky Mountains.</p>
-                                    <ul>
-                                        <li>Max: 4 Person(s)</li>
-                                        <li>Size: 35 m2 / 376 ft2</li>
-                                        <li>View: Ocen</li>
-                                        <li>Bed: King-size or twin beds</li>
-                                    </ul>
-                                </div>
-                                <div class="bot">
-                                    <span class="price">Starting <span class="amout">$260</span> /days</span>
-                                    <a href="#" class="awe-btn awe-btn-13">VIEW DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / ITEM -->
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ var request = require('request');
 
 
 
-
+require('./configs/handlebar');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,9 +46,11 @@ app.use(function(req, res, next)
   //login or logout
   //res.locals.isAuthenticated= req.isAuthenticated();
   res.locals.user = req.session.user;
+ // res.locals.listrooms = 'xin chao';
   //session cart
  // res.locals.session = req.session;
   res.locals.listRooms = req.session.listRooms;
+  res.locals.room = req.session.room;
   next();
 });
 

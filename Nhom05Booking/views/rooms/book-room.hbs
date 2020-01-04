@@ -22,36 +22,30 @@
                             <div class="blog-content">
                                 <!-- POST SINGLE -->
                                 <article class="post post-single">
-                                    {{#each room.image}}
                                    <div class="entry-media">
-                                        <img src="{{this}}" alt="">
+                                        <img src="images/room/img-1.jpg" alt="">
                                     </div>
-                                    {{/each}}
                                     <div class="entry-header">
                                         <h1 class="entry-title">PHÒNG: VIP-101</h1>
                                         <p class="entry-meta">
-                                            
                                             <span class="entry-author">
-                                                {{#option room.status.currentStatus}}
                                                 <span class="screen-reader-text">Trạng thái: Mở</span>
-                                                {{/option}}
                                             </span>
                                             <span class="entry-categories">
-                                               <span class="screen-reader-text">Hình thức: {{room.max}} người</span>
+                                               <span class="screen-reader-text">Hình thức: Một đôi</span>
                                             </span>
                                              <span class="entry-categories">
                                                <span class="screen-reader-text">Điểm đánh giá: 9/10</span>
                                             </span>
                                         </p>
-                                        <h1 class="entry-title">GIÁ: {{room.price}}</h1>
+                                        <h1 class="entry-title">GIÁ: 2.000.000 VNĐ</h1>
                                         <a href="/check-out">
                                         <button class="awe-btn awe-btn-13">ĐẶT PHÒNG</button>
                                         </a>
                                     </div>
                                     <!-- description-->
                                     <div class="entry-content">
-                                        {{!-- <p><b>Phòng với thiết kế sang trọng, thoát mát, sạch sẽ. Là nơi nghỉ dưỡng ấm cúng và hạnh phúc cho bạn và cho người thân của bạn</b></p> --}}
-                                        <p><b>{{room.description}}</b></p>
+                                        <p><b>Phòng với thiết kế sang trọng, thoát mát, sạch sẽ. Là nơi nghỉ dưỡng ấm cúng và hạnh phúc cho bạn và cho người thân của bạn</b></p>
                                     </div>
                                 </article>
                                 <!-- END / POST SINGLE -->
@@ -125,16 +119,16 @@
                                 <!-- WIDGET CHECK AVAILABILITY -->
                                 <div class="widget widget_check_availability">
                                     <h4 class="widget-title">TÌM KIẾM PHÒNG</h4>
-                                    <div class="check_availability">
+                                    <form class="check_availability">
                                         <div class="check_availability-field">
                                             <label>Loại phòng</label>
-                                            <select class="awe-select">
-                                                <option>VIP</option>
-                                                <option>SANG</option>
-                                                <option>THƯỜNG</option>
+                                            <select class="awe-select" name="roomClass">
+                                                <option value="Vip">VIP</option>
+                                                <option value="SANG">SANG</option>
+                                                <option value="THƯỜNG">THƯỜNG</option>
                                             </select>
                                         </div>
-                                         <div class="check_availability-field">
+                                        <div class="check_availability-field">
                                             <label>Hình thức</label>
                                             <select class="awe-select">
                                                 <option>Một đơn</option>
@@ -143,7 +137,7 @@
                                                 <option>Hai đôi</option>
                                             </select>
                                         </div>
-                                         <div class="check_availability-field">
+                                        <div class="check_availability-field">
                                             <label>Giá phòng</label>
                                             <select class="awe-select">
                                                 <option>2.000.000-3.000.000</option>
@@ -160,7 +154,7 @@
                                             <input type="text" class="awe-calendar awe-input to" placeholder="Ngày trả">
                                         </div>
                                         <button class="awe-btn awe-btn-13">TÌM KIẾM</button>
-                                    </div>
+                                    </form>
                                 </div>
                                 <!-- END / WIDGET CHECK AVAILABILITY -->
                             </div>

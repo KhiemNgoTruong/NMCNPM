@@ -29,16 +29,7 @@ router.get('/testcallapi', async (req, res, next)=>{
   res.send( ); // Print the HTML for the Google homepage.
 });
 })
-router.get('/testcallapiget', async (req, res, next)=>{
-  //var user = await getuser.getuser();
-   request.get('http://nhom05booking.herokuapp.com/room/list', function (error, response, body) {
-   console.log('error:', error); // Print the error if one occurred
-   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-   var x = JSON.parse(body);
-   var {user} = JSON.parse(body);
-   res.send( ); // Print the HTML for the Google homepage.
- });
- })
+
 
 module.exports = router;
 

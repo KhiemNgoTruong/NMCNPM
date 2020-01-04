@@ -40,7 +40,9 @@ module.exports.signinpost = function(req, res, next){
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
   var x = JSON.parse(body);
   var {user} = JSON.parse(body);
+  var {token} = JSON.parse(body);
   req.session.user = user;
+  req.session.token = token;
   if(user){
     res.redirect('/');
     }else{

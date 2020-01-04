@@ -62,7 +62,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="ot-accomd-modations-content owl-single" data-single_item="false" data-desktop="1"
@@ -71,7 +70,7 @@
                              data-nav="false"
                              data-pagination="false">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-4">
+                                {{!-- <div class="col-xs-12 col-sm-4">
                                     <div class="item room-item text-center accomd-modations-room_1">
                                         <div class="img">
                                             <a href="#"><img class="img-responsive img-full" src="images/room/img-1.jpg"
@@ -99,8 +98,8 @@
                                         <a class="awe-btn awe-btn-default btn-medium font-hind f12 bold" href="!#"> View
                                             Details</a>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-4">
+                                </div> --}}
+                                {{!-- <div class="col-xs-12 col-sm-4">
                                     <div class="item room-item text-center accomd-modations-room_1">
                                         <div class="img">
                                             <a href="#"><img class="img-responsive img-full" src="images/room/img-1.jpg"
@@ -128,8 +127,8 @@
                                         <a class="awe-btn awe-btn-default btn-medium font-hind f12 bold" href="!#"> View
                                             Details</a>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-4">
+                                </div> --}}
+                                {{!-- <div class="col-xs-12 col-sm-4">
                                     <div class="item room-item text-center accomd-modations-room_1">
                                         <div class="img">
                                             <a href="#"><img class="img-responsive img-full" src="images/room/img-1.jpg"
@@ -157,16 +156,19 @@
                                         <a class="awe-btn awe-btn-default btn-medium font-hind f12 bold" href="!#"> View
                                             Details</a>
                                     </div>
-                                </div>
+                                </div> --}}
+                                {{#each listRooms}}
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="item room-item text-center accomd-modations-room_1">
+                                        {{#each image}}
                                         <div class="img">
-                                            <a href="#"><img class="img-responsive img-full" src="images/room/img-1.jpg"
+                                            <a href="#"><img class="img-responsive img-full" src="{{this}}"
                                                              alt=""></a>
                                         </div>
-                                        <h2 class="title"><a href="!#">Couple Room</a></h2>
+                                        {{/each}}
+                                        <h2 class="title"><a href="!#">{{roomClass}} Room</a></h2>
                                         <p class="price">
-                                            Start from $480 per day
+                                            Start from {{price}} per day
                                         </p>
                                         <div class="info upper">
                                             <p>
@@ -183,39 +185,12 @@
                                                 <span> Bedroom</span>
                                             </p>
                                         </div>
-                                        <a class="awe-btn awe-btn-default btn-medium font-hind f12 bold" href="!#"> View
+                                        <a class="awe-btn awe-btn-default btn-medium font-hind f12 bold" href="/book-room"> View
                                             Details</a>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-4">
-                                    <div class="item room-item text-center accomd-modations-room_1">
-                                        <div class="img">
-                                            <a href="#"><img class="img-responsive img-full" src="images/room/img-1.jpg"
-                                                             alt=""></a>
-                                        </div>
-                                        <h2 class="title"><a href="!#">Single Room</a></h2>
-                                        <p class="price">
-                                            Start from $120 per day
-                                        </p>
-                                        <div class="info upper">
-                                            <p>
-                                                <span class="number">02</span>
-                                                <span>Max Guest</span>
-                                            </p>
-                                            <p>
-                                                <span class="number">34.5</span>
-                                                <span>Size M<sup>2</sup></span>
-
-                                            </p>
-                                            <p>
-                                                <span class="number">01</span>
-                                                <span> Bedroom</span>
-                                            </p>
-                                        </div>
-                                        <a class="awe-btn awe-btn-default btn-medium font-hind f12 bold" href="!#"> View
-                                            Details</a>
-                                    </div>
-                                </div>
+                                {{/each}}
+                                
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="item room-item text-center accomd-modations-room_1">
                                         <div class="img">
@@ -427,6 +402,7 @@
                         </div>
                     </div>
                 </div>
+                
 
             </div>
         </div>
