@@ -42,7 +42,7 @@ module.exports.bookroom=function(req, res, next) {
 module.exports.searchroompost =function(req, res, next){
    
         //data = req.body;
-        var query = "adults=" + req.body.adults + "&childs=" + req.body.childs + "&arrivalDate=" + req.body.arrivalDate + "&departureDate=" +req.body.departureDate;
+        var query = "adults=" + req.body.adults + "&childs=" + req.body.childs + "&arrivalDate=" + new Date(req.body.arrivalDate).getTime() + "&departureDate=" +new Date(req.body.departureDate).getTime();
         request.get('http://nhom05booking.herokuapp.com/room/search?'+query, function (error, response, body) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -70,6 +70,9 @@ module.exports.getRoomInfo = function(req, res, next){
 
 module.exports.createReservation = function(req, res, next){
     data = req.body;
+    let arrivalDate = new Date(req.body.arrivalDate);
+    let departureDate = new Date(req.body.departureDate);
+    
     var x;
     var room = req.session.room;
     var token = req.session.token;
@@ -79,19 +82,28 @@ module.exports.createReservation = function(req, res, next){
     }else{
         checkisPaid =1;
     }
+
    request.post({url: 'http://nhom05booking.herokuapp.com/room/book', headers: {
-    'Authorization': 'jwt '+ token
-  }}, {form: { 'roomId': room._id ,'userId':  user.id, 'arrivalDate': data.arrivalDate, 'departureDate' : data.departureDate, 'adults': data.adults, 'childs' : data.childs, 'cost':room.price, isPaid : checkisPaid}}, function (error, response, body) {
+    'Authorization': 'bearer '+ token
+  }, form: { 'roomId': room._id ,'userId':  user.id, 'arrivalDate': arrivalDate.getTime(), 'departureDate' : departureDate.getTime(), 'adults': data.adults, 'childs' : data.childs, 'cost':room.price, isPaid : checkisPaid}}, function (error, response, body) {
     console.log('error:', error); // Print the error if one occurred
     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
      x= JSON.parse(body);   
-     if(x.user != null){
-        res.redirect('/')
+     let {errorCount} = JSON.parse(body);
+     if(errorCount != null){
+        let messageErrorCheckout = "";
+        for(var i=0; i<parseInt(errorCount); i++){
+            messageErrorCheckout += x.error.room +". ";
+        }
+        req.flash("messagecheckout", messageErrorCheckout);
+        res.redirect('/check-out')
     }else{
-        res.redirect('/sign-up');
+        
+        req.flash("messagecheckout", "Đã đặt phòng thành công");
+        res.redirect('/check-out');
     }
     });
 }
 module.exports.checkOut=function(req, res, next) {
-    res.render('rooms/check-out', { layout: 'layout.hbs', title: 'Check-out' })
+    res.render('rooms/check-out', { layout: 'layout.hbs', title: 'Check-out', messagecheckout: req.flash("messagecheckout")  })
 };

@@ -51,6 +51,8 @@ app.use(function(req, res, next)
  // res.locals.session = req.session;
   res.locals.listRooms = req.session.listRooms;
   res.locals.room = req.session.room;
+  res.locals.reservation = req.session.reservation;
+  res.locals.roomlistbooked = req.session.roomlistbooked;
   next();
 });
 

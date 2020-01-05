@@ -12,10 +12,67 @@ module.exports.signin = function(req, res, next) {
 
 };
 
-module.exports.profile= function(req, res, next) {
-    res.render('accounts/profile', { layout:'layout.hbs', success: req.session.success, errors: req.session.errors });
-    req.session.errors = null;
+module.exports.profile= async function(req, res, next) {
+
+    if(req.session.user){
+        var token = req.session.token;
+        request.post({url: 'http://nhom05booking.herokuapp.com/user/listbook?userId='+ req.session.user.id, headers: {
+            'Authorization': 'bearer '+ token }}, async function (error, response, body) {
+            console.log('error:', error); // Print the error if one occurred
+            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+             var {list}= JSON.parse(body); 
+             req.session.reservation = list;
+            res.locals.reservation =   list;
+            var roomlist = [];
+             if(list){
+                 for(var i=0;i<list.length; i++){
+                    var query = "roomId=" + list[i].room;
+                    var y= 'http://nhom05booking.herokuapp.com/room/info?'+query;
+                    await request.get(y, function (error, response, body) {
+                        console.log('error:', error); // Print the error if one occurred
+                        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                        var x = JSON.parse(body);
+                        var {room} = JSON.parse(body);
+                        roomlist.push(room);
+                        req.session.roomlistbooked = roomlist;
+                        res.locals.roomlistbooked =roomlist;
+                        
+                        if(roomlist.length == list.length){
+                            for(var j=0; j<list.length; j++){
+                                req.session.reservation[j].roomname = roomlist[j];
+                            }
+                            res.render('accounts/profile', { layout:'layout.hbs', success: req.session.success, errors: req.session.errors, roomlist: roomlist});
+                        }
+                });
+                 }
+                 
+                
+                //return res.redirect('/');
+            }else{
+                return res.render('accounts/profile', { layout:'layout.hbs', success: req.session.success, errors: req.session.errors, roomlist: roomlist});
+            }
+        });
+    }
+    // res.render('accounts/profile', { layout:'layout.hbs', success: req.session.success, errors: req.session.errors });
+    // req.session.errors = null;
 };
+
+//huy phong va thay doi thong tin ca nhan
+module.exports.cancelReservation = function(req, res, next){
+        const reservation = req.params.id;
+        var token = req.session.token;
+        request.post({url: 'http://nhom05booking.herokuapp.com/room/cancel', headers: {
+            'Authorization': 'bearer '+ token}, form: { 'reservationId': reservation}}, function (error, response, body) {
+            console.log('error:', error); // Print the error if one occurred
+            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+             x= JSON.parse(body);   
+             if(x){
+                res.redirect('/profile')
+            }else{
+                res.redirect('/sign-up');
+            }
+        });
+}
 
 module.exports.signuppost = function(req, res, next){
     data = req.body;
@@ -30,8 +87,6 @@ module.exports.signuppost = function(req, res, next){
         res.redirect('/sign-up');
     }
     });
-    
-    
 };
 
 module.exports.signinpost = function(req, res, next){
@@ -50,3 +105,4 @@ module.exports.signinpost = function(req, res, next){
     }
 });
 }
+

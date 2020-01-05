@@ -26,30 +26,30 @@
                                 <ul id="myTab3" class="tab-review-design">
                                     <li class="active"><a href="#description"><i aria-hidden="true"></i><p style="size: 20px; font-weight:bold">THÔNG TIN CÁ NHÂN</p></a></li>
                                 </ul>
-                                <div id="myTabContent" class="tab-content custom-product-edit">
+                                <form id="myTabContent" class="tab-content custom-product-edit" method="POST">
                                     <div class="product-tab-list tab-pane fade active in" id="description">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
+                                                    <div class="form-group input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Tên">
+                                                        <input type="text" class="form-control" placeholder="Tên" value="{{user.firstName}}" name="firstName">
                                                     </div>
-                                                    <div class="input-group mg-b-pro-edt">
+                                                    <div class="form-group input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Email">
+                                                        <input type="text" class="form-control" placeholder="Email" value="{{user.email}}" name="email">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
+                                                    <div class="form-group input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Họ">
+                                                        <input type="text" class="form-control" placeholder="Họ" value="{{user.lastName}}" name="lastName">
                                                     </div>
-                                                    <div class="input-group mg-b-pro-edt">
+                                                    <div class="form-group input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i  aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Số điện thoại">
+                                                        <input type="text" class="form-control" placeholder="Số điện thoại" value="{{user.phoneNumber}}" name="phoneNumber">
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,15 +57,13 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="text-center mg-b-pro-edt custom-pro-edt-ds">
-                                                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10">Save
-														</button>
-                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Discard
+                                                    <button  class="form-group btn btn-primary waves-effect waves-light m-r-10" type="button">Save
 														</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -90,11 +88,11 @@
 										<th>Danh sách phòng</th>
 										<th></th>
 										<th class="text-center">Số Tiền</th>
-										<th class="text-right">Trạng Thái</th>
+										<th class="text-right">Chọn</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									{{!-- <tr>
 										<td class="thumb"><img src="/images/room/img-1.jpg" alt=""></td>
 										<td class="details">
 											<a href="#">Tên phòng</a>
@@ -117,19 +115,32 @@
 										</td>
 										<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
 										<td class="total text-right"><strong class="primary-color">Đã nhận phòng</strong></td>	
-									</tr>
+									</tr> --}}
+
+									{{!-- {{#for roomlistbooked}}
+										{{roomlistbooked[@index]}}
+									{{/each}}
+									{{#if reservation}}
+									{{roomlistbooked.1.description}}
+									{{/if}} --}}
+									{{#each reservation}}
                                     <tr>
-										<td class="thumb"><img src="/images/room/img-3.jpg" alt=""></td>
+										<td class="thumb"><img src="{{roomname.image}}" alt=""></td>
 										<td class="details">
-											<a href="#">Tên phòng</a>
+											<a href="#">Tên phòng:</a>
 											<ul>
-												<li><span>Loại: VIP</span></li>
-												<li><span>Hình thức: Một đôi</span></li>
+												<li><span>Loại: {{roomname.roomClass}}</span></li>
+												<li><span>Hình thức: {{roomname.max}} người</span></li>
+												{{!-- <li><span>Ngày đặt: {{arrivalDate}}</span></li>
+												<li><span>Ngày hủy: {{departureDate}}</span></li> --}}
+												<li><span>adults: {{adults}}</span></li>
+												<li><span>childs: {{childs}}</span></li>
 											</ul>
 										</td>
-										<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
-										<td class="total text-right"><strong class="primary-color">Đã hủy</strong></td>	
+										<td class="total text-center"><strong class="primary-color">{{cost}}</strong></td>
+										<td class="total text-right"><strong class="btn primary-color"><a href="profile/{{_id}}">Hủy phòng</a></strong></td>	
 									</tr>
+									{{/each}}
 								</tbody>
 							</table>
 						</div>

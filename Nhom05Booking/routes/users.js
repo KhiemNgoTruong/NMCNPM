@@ -16,6 +16,8 @@ router.post('/sign-up', userController.signuppost)
 
 router.get('/profile', userController.profile);
 
+router.get('/profile/:id', userController.cancelReservation);
+
 
 
 
