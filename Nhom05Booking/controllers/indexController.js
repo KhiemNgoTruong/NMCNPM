@@ -6,7 +6,6 @@ module.exports.home =function(req, res, next) {
 };
 
 module.exports.room=function(req, res, next) {
-
     if(!req.session.listRooms){
         request.get('http://nhom05booking.herokuapp.com/room/list', function (error, response, body) {
         console.log('error:', error); // Print the error if one occurred
@@ -40,7 +39,6 @@ module.exports.bookroom=function(req, res, next) {
 };
 
 module.exports.searchroompost =function(req, res, next){
-   
         //data = req.body;
         var query = "adults=" + req.body.adults + "&childs=" + req.body.childs + "&arrivalDate=" + new Date(req.body.arrivalDate).getTime() + "&departureDate=" +new Date(req.body.departureDate).getTime();
         request.get('http://nhom05booking.herokuapp.com/room/search?'+query, function (error, response, body) {
