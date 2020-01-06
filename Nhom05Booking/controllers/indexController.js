@@ -141,3 +141,33 @@ module.exports.createReservation = function(req, res, next) {
 module.exports.checkOut = function(req, res, next) {
   res.render('rooms/check-out', { layout: 'layout.hbs', title: 'Check-out', messagecheckout: req.flash('messagecheckout') });
 };
+
+module.exports.managerRoom = function(req, res, next) {
+  res.render('admin/manager-room', { layout: 'layout.hbs', title: 'manager-room'});
+};
+
+module.exports.managerBill = function(req, res, next) {
+  res.render('admin/manager-bill', { layout: 'layout.hbs', title: 'manager-bill'});
+};
+
+module.exports.editRoom = function(req, res, next) {
+  res.render('admin/edit-room', { layout: 'layout.hbs', title: 'PHÒNG' });
+};
+
+module.exports.getEditRoom = function(req, res, next) {
+  var query = 'roomId=' + req.query.roomId;
+  var y = 'http://nhom05booking.herokuapp.com/room/info?' + query;
+  request.get(y, function(error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    var x = JSON.parse(body);
+    var { room } = JSON.parse(body);
+    req.session.room = room;
+    res.locals.room = req.session.room;
+    res.redirect('/edit-room');
+  });
+};
+
+module.exports.addRoom = function(req, res, next) {
+  res.render('admin/add-room', { layout: 'layout.hbs', title: 'PHÒNG' });
+};

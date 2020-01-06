@@ -1,0 +1,63 @@
+<section class="section-sub-banner bg-9">
+    <div class="awe-overlay"></div>
+    <div class="sub-banner">
+        <div class="container">
+            <div class="text text-center">
+                <hr>
+                <hr>
+                <h2>Thông tin N5-BOOKING</h2>
+                <p>Website cho phép người dùng đặt phòng khách sạn online!</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<hr>
+<div class="container">
+        <div class="table-wrapper">
+             <div class="table-title">
+               <div class="row">
+                    <div class="col-sm-5">
+                       <h1><b style="color: red; font-weight:bold ;">DANH SÁCH PHÒNG</b></h1>
+                    </div>
+                    <div class="col-sm-7">
+                         <a href="/addRoom" class="btn btn-primary">
+                                 <i class="material-icons">&#xE147;</i> 
+                                 <span style="color:GREEN;font-weight:bold;">Thêm phòng</span>
+                        </a>
+                    </div>
+                </div>
+              </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="bg-light">
+                    <tr class="border-0">
+                        <th class="border-0"></th>
+                        <th class="border-0" style="color:blue;font-weight:bold; font-size:25px">Hình</th>
+                        <th class="border-0" style="color:blue;font-weight:bold; font-size:25px">Tên phòng</th>
+                        <th class="border-0" style="color:blue;font-weight:bold; font-size:25px">Hạng phòng</th>
+                        <th class="border-0" style="color:blue;font-weight:bold; font-size:25px">Giá</th>
+                        <th class="border-0" style="color:blue;font-weight:bold; font-size:25px">Chi tiết</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                     {{#each listRooms}}
+                        <tr style="color:black;font-weight:bold; font-size:20px; align:center;">
+                            <td></td>
+                            <td>
+                               {{#each image}} <div class="m-r-10"><img src="{{this}}" alt="user" class="rounded" width="200"></div>  {{/each}}
+                            </td>
+                            <td>{{code}}</td>
+                            <td>{{roomClass}}</td>
+                            <td>{{price}}</td>
+                             <td><a href="/getroominfo?roomId={{_id}}" style="color: red;"><u>XEM</u></a></td>
+                            <td><a href="/getEditRoom?roomId={{_id}}" style="color: red;"><u>SỬA</u></a></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

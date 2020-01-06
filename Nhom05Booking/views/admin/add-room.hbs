@@ -1,0 +1,113 @@
+<section class="section-sub-banner bg-9">
+    <div class="awe-overlay"></div>
+    <div class="sub-banner">
+        <div class="container">
+            <div class="text text-center">
+                <hr>
+                <hr>
+                <h2>Thông tin N5-BOOKING</h2>
+                <p>Website cho phép người dùng đặt phòng khách sạn online!</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+            <div class="ot-heading pt80 pb30 text-center row-20">
+                <h1><b style="color: red; font-weight:bold ;">THÊM PHÒNG MỚI</b></h1>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            {{#if errors }}
+                <h4>{{errors}}</h4>
+            {{/if}}
+        </div>
+
+        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="col-lg-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Ảnh phòng:</label>
+                <div class="col-lg-8">
+                      <input class="form-control" type="file" name="myfile">
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                            <button class="btn btn-block btn-primary" type="submit">LƯU</button>
+                    </div>
+                </div>
+            </div>
+        </form> 
+        <form class="form-horizontal" method="post">
+            <div class="form-group">
+                <label class="col-lg-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Tên phòng :</label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text"  name="productname" minlength="5">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Hạng phòng:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text"  name="oldprice" minlength="3" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Giá:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text"  name="saleoff" minlength="2">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Diện tích:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text"  name="price" minlength="3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Số người:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text"  name="cat" min="2">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Số giường:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text"  name="gender" minlength="2">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Mô tả:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text"  name="producer" minlength="3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Trạng thái:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text"  name="producer" minlength="3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Review:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text"  name="producer" minlength="3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" style="coloR:BLUE;font-weight:bold; font-size:20px">Ngày thêm:</label>
+                <div class="col-md-8">
+                     <input class="form-control" type="text"  name="salarysold" >
+                 </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-8">
+                     <button class="btn btn-block btn-primary" type="submit">LƯU</button>
+                 </div>
+            </div>
+        </form>
+     </div>
+</div>
+
