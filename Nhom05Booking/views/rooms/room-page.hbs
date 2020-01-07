@@ -71,30 +71,33 @@
                                 <span class="amout">{{room.price}}</span> / ngày
                             </p>
                         </div>
+                        <form action="/check-out" method="POST">
+                            <div class="room-detail_form">
+                                <label>Ngày Đến</label>
+                                <input type="text" class="awe-calendar from" name="arrivalDate"
+                                    placeholder="Arrive Date">
+                                <label>Ngày Đi</label>
+                                <input type="text" class="awe-calendar to" name="departureDate"
+                                    placeholder="Departure Date">
+                                <label>Người Lớn</label>
+                                <select class="awe-select" name="adults">
+                                    <option selected>1</option s>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                                <label>Child</label>
+                                <select class="awe-select" name="childs">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                                <button type="submit" class="awe-btn awe-btn-13">Đặt Ngay</button>
+                            </div>
 
-                        <div class="room-detail_form">
-                            <label>Ngày Đến</label>
-                            <input type="text" class="awe-calendar from" name="arrivalDate" placeholder="Arrive Date">
-                            <label>Ngày Đi</label>
-                            <input type="text" class="awe-calendar to" name="departureDate"
-                                placeholder="Departure Date">
-                            <label>Người Lớn</label>
-                            <select class="awe-select" name="adults">
-                                <option selected>1</option s>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                            <label>Child</label>
-                            <select class="awe-select" name="childs">
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                            <button class="awe-btn awe-btn-13">Đặt Ngay</button>
-                        </div>
+                        </form>
 
                     </div>
                     <!-- END / FORM BOOK -->
@@ -466,34 +469,36 @@
 </section>
 
 <script>
+    (function ($) {
+        function getUnAvailableDate() {
+            $.ajax({
+                url: "http://nhom05booking.herokuapp.com/room/info?roomId={{room._id}}",
+                method: "GET",
 
+                success: data => {
+                    var unavailableDates = [];
+                    console.log(data);
+                    var book = data.room.status.bookTime
+                    for (var i = 0; i < book.length; i++) {
 
-    var unavailableDates = [];
-    async function run() {
+                        var start = new Date(Number(book[i].startDate));
+                        var startDateStr = start.getFullYear() + "-" + Number(start.getMonth() + 1).toString() + '-' + Number(start.getDate() + 1).toString();
+                        var end = new Date(Number(book[i].endDate));
+                        var endDateStr = end.getFullYear() + "-" + Number(end.getMonth() + 1).toString() + '-' + Number(end.getDate() + 1).toString();
+                        if (book[i].startDate < book[i].endDate) {
+                            unavailableDates.push({ start: startDateStr, end: endDateStr })
+                        }
+                        console.log(unavailableDates);
 
-        await $.ajax({
-            url: "http://nhom05booking.herokuapp.com/room/info?roomId={{room._id}}",
-            method: "GET",
-
-            success: data => {
-                var book = data.room.status.bookTime
-                for (var i = 0; i < book.length; i++) {
-
-                    var start = new Date(Number(book[i].startDate));
-                    var startDateStr = start.getFullYear() + "-" + Number(start.getMonth() + 1).toString() + '-' + Number(start.getDay() + 1).toString();
-                    var end = new Date(Number(book[i].endDate));
-                    var endDateStr = end.getFullYear() + "-" + Number(end.getMonth() + 1).toString() + '-' + Number(end.getDay() + 1).toString();
-                    unavailableDates.push({ start: startDateStr, end: endDateStr })
+                    }
+                    $('#awdhj').availabilityCalendar(unavailableDates);
                 }
-                isUpdated = true
-            }
-        });
+            });
+        }
 
-    };
+        getUnAvailableDate();
 
-    run();
-    console.log(unavailableDates)
-    $('#awdhj').availabilityCalendar(unavailableDates);
+    })(jQuery)
 
 
 

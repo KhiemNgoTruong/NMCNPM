@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(expressSession({ secret: 'max', saveUninitialized: true, resave: false }));
+app.use(expressSession({ secret: 'max', saveUninitialized: false, resave: false }));
 app.use(connectFlash());
 app.use(passport.initialize());
 app.use(passport.session());

@@ -1,32 +1,33 @@
 <!-- BANNER -->
- <section class="section-sub-banner bg-9">
-            <div class="awe-overlay"></div>
-            <div class="sub-banner">
-                <div class="container">
-                    <div class="text text-center">
-                        <hr><hr>
-                        <h2>N5-BOOKING</h2>
-                        <p>Tận hưởng giây phút tuyệt vời!</p>
-                    </div>
-                </div>
+<section class="section-sub-banner bg-9">
+    <div class="awe-overlay"></div>
+    <div class="sub-banner">
+        <div class="container">
+            <div class="text text-center">
+                <hr>
+                <hr>
+                <h2>N5-BOOKING</h2>
+                <p>Tận hưởng giây phút tuyệt vời!</p>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 <!-- END / SUB BANNER -->
 {{#if messagecheckout}}
-                <h1 class="text-center">{{messagecheckout}}</h1>
-                {{/if}}
+<h1 class="text-center">{{messagecheckout}}</h1>
+{{/if}}
 <section class="section-room bg-white">
-<div class="container">
- <div class="sidebar">
-   <div class="widget widget_check_availability">
+    <div class="container">
+        <div class="sidebar">
+            <div class="widget widget_check_availability">
 
-        <h4 class="widget-title">THÔNG TIN ĐẶT PHÒNG</h4>
+                <h4 class="widget-title">THÔNG TIN ĐẶT PHÒNG</h4>
 
-            <form class="check_availability" method="POST">
+                <form class="check_availability" method="POST">
 
-                <h6 class="check_availability_title">Ngày bạn đặt</h6>
+                    <h6 class="check_availability_title">Ngày bạn đặt</h6>
 
-                {{!-- <div class="check_availability-field">
+                    {{!-- <div class="check_availability-field">
                         <label>Ngày nhận</label>
                         <input type="text" class="awe-calendar awe-input from" placeholder="Ngày nhận">
                  </div>
@@ -34,48 +35,48 @@
                         <label>Ngày trả</label>
                         <input type="text" class="awe-calendar awe-input to" placeholder="Ngày trả">
                  </div> --}}
-                <span>Ngày nhận: </span><input type="date" class=" from"  name="arrivalDate">
-                <span>Ngày Trả: </span><input  type="date"  class=" to" name="departureDate">
-                <h6 class="check_availability_title">KHÁCH<h6>
-                <div class="check_availability_group">
-                        <span class="label-group">ROOM 1</span>
-                            <div class="check_availability-field_group">
-                                <div class="check_availability-field">
-                                    <label>Người lớn</label>
-                                    <select class="awe-select" name="adults">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                    </select>
+                    <span>Ngày nhận: </span><input type="date" class=" from" name="arrivalDate">
+                    <span>Ngày Trả: </span><input type="date" class=" to" name="departureDate">
+                    <h6 class="check_availability_title">KHÁCH<h6>
+                            <div class="check_availability_group">
+                                <span class="label-group">ROOM 1</span>
+                                <div class="check_availability-field_group">
+                                    <div class="check_availability-field">
+                                        <label>Người lớn</label>
+                                        <select class="awe-select" name="adults">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                    <div class="check_availability-field">
+                                        <label>Trẻ em</label>
+                                        <select class="awe-select" name="childs">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="check_availability-field">
-                                    <label>Trẻ em</label>
-                                    <select class="awe-select" name="childs">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                    </select>
-                                 </div>
                             </div>
-                </div>
-                <div class="check_availability-field">
-                                    <label>Thanh toan</label>
-                                    <select class="awe-select" name="isPaid">
-                                        <option value="0">Chua thanh toan</option>
-                                        <option value="1">Da thanh toan</option>
-                                    </select>
-                                </div>
-                <a href="#">
-                         <button class="awe-btn awe-btn-13" type="submit">XÁC NHẬN</button>
-                </a>
-             </form>
-       </div>
-   </div>
-</div>
+                            <div class="check_availability-field">
+                                <label>Thanh toan</label>
+                                <select class="awe-select" name="isPaid">
+                                    <option value="0">Chua thanh toan</option>
+                                    <option value="1">Da thanh toan</option>
+                                </select>
+                            </div>
+                            <a href="#">
+                                <button class="awe-btn awe-btn-13" type="submit">XÁC NHẬN</button>
+                            </a>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>

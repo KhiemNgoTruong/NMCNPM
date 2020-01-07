@@ -276,6 +276,8 @@
             });
     }
 
+    
+
     /*Banner Slide*/
     BannerSlider();
     function BannerSlider() {

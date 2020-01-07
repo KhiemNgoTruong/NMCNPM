@@ -96,11 +96,8 @@ module.exports.createReservation = function(req, res, next) {
   var room = req.session.room;
   var token = req.session.token;
   var user = req.session.user;
-  if (req.body.isPaid === '0') {
-    checkisPaid = 0;
-  } else {
-    checkisPaid = 1;
-  }
+
+  checkisPaid = 0;
 
   request.post(
     {
@@ -130,28 +127,28 @@ module.exports.createReservation = function(req, res, next) {
           messageErrorCheckout += x.error.room + '. ';
         }
         req.flash('messagecheckout', messageErrorCheckout);
-        res.redirect('/check-out');
+        res.redirect('/profile');
       } else {
         req.flash('messagecheckout', 'Đã đặt phòng thành công');
-        res.redirect('/check-out');
+        res.redirect('/profile');
       }
     }
   );
 };
 module.exports.checkOut = function(req, res, next) {
-  res.render('rooms/check-out', { layout: 'layout.hbs', title: 'Check-out', messagecheckout: req.flash('messagecheckout') });
+  return res.render('rooms/check-out', { layout: 'layout.hbs', title: 'Check-out', messagecheckout: req.flash('messagecheckout') });
 };
 
 module.exports.managerRoom = function(req, res, next) {
-  res.render('admin/manager-room', { layout: 'layout.hbs', title: 'manager-room'});
+  return res.render('admin/manager-room', { layout: 'layout.hbs', title: 'manager-room' });
 };
 
 module.exports.managerBill = function(req, res, next) {
-  res.render('admin/manager-bill', { layout: 'layout.hbs', title: 'manager-bill'});
+  return res.render('admin/manager-bill', { layout: 'layout.hbs', title: 'manager-bill' });
 };
 
 module.exports.editRoom = function(req, res, next) {
-  res.render('admin/edit-room', { layout: 'layout.hbs', title: 'PHÒNG' });
+  return res.render('admin/edit-room', { layout: 'layout.hbs', title: 'PHÒNG' });
 };
 
 module.exports.getEditRoom = function(req, res, next) {
