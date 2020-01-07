@@ -22,4 +22,14 @@ router.post('/room', indexController.searchroompost);
 
 router.get('/getroominfo',indexController.getRoomInfo);
 
+router.get('/manager-room', indexController.managerRoom);
+
+router.get('/manager-bill', indexController.managerBill);
+
+
+router.get('/edit-room', indexController.editRoom);
+router.get('/getEditRoom',indexController.getEditRoom);
+
+router.get('/addRoom',indexController.addRoom);
+
 module.exports = router;
