@@ -19,7 +19,7 @@ module.exports.home = function(req, res, next) {
 };
 
 module.exports.room = function(req, res, next) {
-  if (!req.session.listRooms) {
+  if (!req.session.listRooms || req.session.listRooms == []) {
     request.get('http://nhom05booking.herokuapp.com/room/list', function(error, response, body) {
       console.log('error:', error); // Print the error if one occurred
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received

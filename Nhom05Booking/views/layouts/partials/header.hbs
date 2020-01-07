@@ -14,6 +14,9 @@
                 <span class="login-register">
                     {{#if user}}
                     <a href="/profile">TÀI KHOẢN</a>
+                    {{#ifCond user.role 1}}
+                    <a href="/admin">QUẢN TRỊ</a>
+                    {{/ifCond}}
                     <a href="/logout">ĐĂNG XUẤT</a>
                     {{else}}
                     <a href="/sign-in">ĐĂNG NHẬP</a>
